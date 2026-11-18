@@ -42,10 +42,10 @@ function UnitModal({ id, onClose, onChanged }) {
         <div className="between"><Badge status={u.status} />{u.subdealer_name && <span className="small">Held by <b>{u.subdealer_name}</b></span>}</div>
         <dl className="kv">
           <dt>Chassis</dt><dd className="mono">{u.chassis_no}</dd>
-          <dt>Motor</dt><dd className="mono">{u.motor_no || '—'}</dd>
-          <dt>Battery</dt><dd className="mono">{u.battery_no || '—'}</dd>
-          <dt>Charger</dt><dd className="mono">{u.charger_no || '—'}</dd>
-          <dt>Year</dt><dd>{u.mfg_year || '—'}</dd>
+          <dt>Motor</dt><dd className="mono">{u.motor_no || '-'}</dd>
+          <dt>Battery</dt><dd className="mono">{u.battery_no || '-'}</dd>
+          <dt>Charger</dt><dd className="mono">{u.charger_no || '-'}</dd>
+          <dt>Year</dt><dd>{u.mfg_year || '-'}</dd>
           <dt>Received</dt><dd>{fmtDate(u.received_on)} · {u.age_days} days ago</dd>
           {user.role !== 'subdealer' && <><dt>Cost</dt><dd>{money(u.cost)}</dd><dt>Ex-showroom</dt><dd>{money(u.price)}</dd></>}
           {u.purchase && <><dt>Purchased</dt><dd><Link to={`/purchases/${u.purchase.id}`}>{u.purchase.number}</Link> · {u.purchase.supplier}{u.purchase.supplier_invoice_no ? ` · Bill ${u.purchase.supplier_invoice_no}` : ''}</dd></>}
@@ -195,8 +195,8 @@ export default function VehicleStock({ mine = false }) {
         <DataTable loading={loading} rows={data.items} onRowClick={(r) => setOpen(r.id)}
           empty={<Empty icon="scooter" title="No vehicles here" />}
           columns={[
-            { key: 'chassis_no', label: 'Chassis', primary: true, render: (r) => <><b className="mono">{r.chassis_no}</b><div className="small muted">{r.model} · {r.color || '—'}</div></> },
-            { key: 'battery_no', label: 'Battery', hideSm: true, render: (r) => <span className="mono">{r.battery_no || '—'}</span> },
+            { key: 'chassis_no', label: 'Chassis', primary: true, render: (r) => <><b className="mono">{r.chassis_no}</b><div className="small muted">{r.model} · {r.color || '-'}</div></> },
+            { key: 'battery_no', label: 'Battery', hideSm: true, render: (r) => <span className="mono">{r.battery_no || '-'}</span> },
             { key: 'where', label: 'Location', render: (r) => r.status === 'in_stock' ? 'Showroom' : r.subdealer_name || (r.retail_customer ? `Retail · ${r.retail_customer}` : 'Customer') },
             { key: 'age_days', label: 'Age', num: true, render: (r) => (r.status === 'sold' ? fmtDate(r.sold_on) : `${r.age_days} d`) },
             { key: 'status', label: 'Status', render: (r) => <Badge status={r.status} /> },

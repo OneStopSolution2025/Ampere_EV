@@ -156,10 +156,10 @@ export default function InvoiceView() {
                 <tr key={l.id}>
                   <td>{i + 1}</td>
                   <td>{l.description}<div className="small muted">{l.kind === 'vehicle' ? 'Vehicle' : l.kind === 'part' ? 'Part' : 'Labour'}</div>{l.unit && <div className="small mono" style={{ lineHeight: 1.6 }}>Chassis {l.unit.chassis_no}{l.unit.motor_no ? <><br />Motor {l.unit.motor_no}</> : ''}{l.unit.battery_no ? <><br />Battery {l.unit.battery_no}</> : ''}{l.unit.charger_no ? <><br />Charger {l.unit.charger_no}</> : ''}{l.unit.color ? <><br />Colour {l.unit.color}</> : ''}</div>}</td>
-                  <td className="hide-sm">{l.hsn_sac || '—'}</td>
+                  <td className="hide-sm">{l.hsn_sac || '-'}</td>
                   <td className="num">{n2(l.qty)}</td>
                   <td className="num">{amt(l.unit_price)}</td>
-                  <td className="num hide-sm">{l.discount ? amt(l.discount) : '—'}</td>
+                  <td className="num hide-sm">{l.discount ? amt(l.discount) : '-'}</td>
                   <td className="num">{l.gst_rate}%</td>
                   <td className="num">{amt(l.total)}</td>
                 </tr>

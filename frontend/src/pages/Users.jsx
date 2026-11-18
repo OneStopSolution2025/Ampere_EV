@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { api } from '../api';
 import Icon from '../components/Icon';
-import { Badge, DataTable, Field, Modal, useToast } from '../components/ui';
+import { Badge, DataTable, Field, Modal, useToast, PasswordInput } from '../components/ui';
 import { ROLE_LABELS } from '../permissions';
 
 const ROLE_HELP = {
@@ -46,9 +46,9 @@ function UserForm({ user, onClose, onSaved }) {
           </Field>
         )}
         <Field label={user ? 'New password (leave blank to keep)' : 'Password *'} full>
-          <input className="input" type="password" minLength={6} required={!user} value={f.password} autoComplete="new-password" onChange={(e) => setF({ ...f, password: e.target.value })} />
+          <PasswordInput minLength={6} required={!user} value={f.password} autoComplete="new-password" onChange={(e) => setF({ ...f, password: e.target.value })} />
         </Field>
-        <label className="check full"><input type="checkbox" checked={f.is_active} onChange={(e) => setF({ ...f, is_active: e.target.checked })} />Active — can sign in</label>
+        <label className="check full"><input type="checkbox" checked={f.is_active} onChange={(e) => setF({ ...f, is_active: e.target.checked })} />Active (can sign in)</label>
       </form>
     </Modal>
   );

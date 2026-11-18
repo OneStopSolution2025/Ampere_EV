@@ -14,13 +14,13 @@ export const today = () => new Date().toLocaleDateString('en-CA');
 export const monthStart = () => { const d = new Date(); d.setDate(1); return d.toLocaleDateString('en-CA'); };
 
 export function fmtDate(iso) {
-  if (!iso) return '—';
+  if (!iso) return '-';
   const d = new Date(iso.length === 10 ? `${iso}T00:00:00` : iso);
   return d.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
 }
 
 export function fmtDateTime(iso) {
-  if (!iso) return '—';
+  if (!iso) return '-';
   return new Date(iso + (iso.endsWith('Z') ? '' : 'Z')).toLocaleString('en-IN', {
     day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit',
   });

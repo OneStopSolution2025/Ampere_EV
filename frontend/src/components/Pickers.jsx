@@ -190,7 +190,7 @@ export function CustomerForm({ customer, onClose, onSaved }) {
         </div>
         {!customer && (
           <div className="stack" style={{ gap: 10 }}>
-            <h3>Vehicle for service <span className="muted small">(optional — vehicles bought here are added automatically)</span></h3>
+            <h3>Vehicle for service <span className="muted small">(optional. Vehicles bought here are added automatically.)</span></h3>
             <VehicleFields v={v} set={setV} />
           </div>
         )}
@@ -220,7 +220,7 @@ export function UnitPicker({ exclude = [], onPick, onClose }) {
               <button type="button" key={u.id} className="list-row" style={{ width: '100%', border: 0, background: 'none', font: 'inherit', textAlign: 'left', cursor: 'pointer' }}
                 onClick={() => onPick(u)}>
                 <div>
-                  <b>{u.model}</b> <span className="muted">· {u.color || '—'}</span>
+                  <b>{u.model}</b> <span className="muted">· {u.color || '-'}</span>
                   <div className="small muted mono">Chassis {u.chassis_no}{u.battery_no ? ` · Battery ${u.battery_no}` : ''}</div>
                 </div>
                 <b className="mono">{money(u.price)}</b>

@@ -67,7 +67,7 @@ def summary(db: Session = Depends(get_db), _=Depends(require_roles(*STAFF))):
         "sold": counts.get("sold", 0), "sold_this_month": sold_month, "stock_value": r2(value), "aged_60": aged,
         "by_model": [{"item_id": i, "model": n, "price": p, "in_stock": int(s or 0), "with_subdealer": int(w or 0),
                       "sold_this_month": int(m or 0), "low": int(s or 0) <= (rl or 0)} for i, n, p, rl, s, w, m in by_model],
-        "by_color": [{"model": n, "color": c or "—", "count": k} for n, c, k in by_color],
+        "by_color": [{"model": n, "color": c or "-", "count": k} for n, c, k in by_color],
     }
 
 

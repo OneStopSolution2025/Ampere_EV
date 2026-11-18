@@ -25,7 +25,7 @@ export default function Activity() {
   return (
     <div className="stack">
       <div className="page-head">
-        <div><h1>Activity log</h1><p>Every sign-in, bill, payment, cancellation and stock change — who did it and when.</p></div>
+        <div><h1>Activity log</h1><p>Every sign-in, bill, payment, cancellation and stock change, with who did it and when.</p></div>
         <button className="btn" onClick={() => downloadCSV('activity.csv', data.items)}>Export page</button>
       </div>
       <div className="between">

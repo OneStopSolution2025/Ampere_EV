@@ -115,7 +115,7 @@ function SubdealerDashboard({ d, user }) {
           <div className="card-head"><h2>Vehicles awaiting sale</h2><Link to="/my-stock" className="small">Manage</Link></div>
           {d.holding.length ? d.holding.slice(0, 8).map((u) => (
             <Link key={u.id} to="/my-stock" className="list-row">
-              <div><b>{u.model}</b> <span className="muted">· {u.color || '—'}</span><div className="small muted mono">{u.chassis_no}</div></div>
+              <div><b>{u.model}</b> <span className="muted">· {u.color || '-'}</span><div className="small muted mono">{u.chassis_no}</div></div>
               <span className="small muted">{u.age_days} days</span>
             </Link>
           )) : <Empty icon="scooter" title="No vehicles in stock" />}

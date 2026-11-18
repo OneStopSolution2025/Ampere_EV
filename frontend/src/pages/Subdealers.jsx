@@ -27,7 +27,7 @@ export function SubdealerForm({ dealer, onClose, onSaved }) {
         <Field label="Phone"><input className="input" value={f.phone || ''} onChange={set('phone')} /></Field>
         <Field label="Email"><input className="input" type="email" value={f.email || ''} onChange={set('email')} /></Field>
         <Field label="GSTIN"><input className="input" maxLength={15} value={f.gstin || ''} onChange={(e) => setF({ ...f, gstin: e.target.value.toUpperCase() })} /></Field>
-        <Field label="State"><select className="input" value={f.state || ''} onChange={set('state')}><option value="">—</option>{INDIAN_STATES.map((s) => <option key={s}>{s}</option>)}</select></Field>
+        <Field label="State"><select className="input" value={f.state || ''} onChange={set('state')}><option value="">-</option>{INDIAN_STATES.map((s) => <option key={s}>{s}</option>)}</select></Field>
         <Field label="Address" full><textarea className="input" value={f.address || ''} onChange={set('address')} /></Field>
         <Field label={`Credit limit ₹ ${can.setCreditLimit(user.role) ? '(0 = no limit)' : '(admin only)'}`}>
           <input className="input" type="number" min="0" step="1000" disabled={!can.setCreditLimit(user.role)} value={f.credit_limit} onChange={set('credit_limit')} />
@@ -80,7 +80,7 @@ export default function Subdealers() {
             { key: 'state', label: 'State', hideSm: true },
             { key: 'vehicles_holding', label: 'Holding', num: true },
             { key: 'retailed_this_month', label: 'Retailed (month)', num: true, hideSm: true },
-            { key: 'outstanding', label: 'Outstanding', num: true, render: (r) => (r.outstanding ? <b>{money(r.outstanding)}</b> : '—') },
+            { key: 'outstanding', label: 'Outstanding', num: true, render: (r) => (r.outstanding ? <b>{money(r.outstanding)}</b> : '-') },
             { key: 'credit', label: 'Credit left', num: true, render: (r) => (r.credit_limit ? <span style={{ color: r.credit_available < 0 ? 'var(--red)' : undefined }}>{money0(r.credit_available)}</span> : 'No limit') },
           ]} />
       </div>
@@ -146,8 +146,8 @@ export function SubdealerDetail({ portal = false }) {
       {tab === 'stock' && (
         <div className="card">
           <DataTable rows={units} empty={<Empty icon="scooter" title="No vehicles billed to this sub-dealer" />} columns={[
-            { key: 'chassis_no', label: 'Chassis', primary: true, render: (r) => <><b className="mono">{r.chassis_no}</b><div className="small muted">{r.model} · {r.color || '—'}</div></> },
-            { key: 'retail', label: 'Retail customer', render: (r) => r.retail_customer || '—' },
+            { key: 'chassis_no', label: 'Chassis', primary: true, render: (r) => <><b className="mono">{r.chassis_no}</b><div className="small muted">{r.model} · {r.color || '-'}</div></> },
+            { key: 'retail', label: 'Retail customer', render: (r) => r.retail_customer || '-' },
             { key: 'age_days', label: 'Since', num: true, render: (r) => (r.status === 'sold' ? fmtDate(r.sold_on) : `${r.age_days} d`) },
             { key: 'status', label: 'Status', render: (r) => <Badge status={r.status} /> },
           ]} />
@@ -160,7 +160,7 @@ export function SubdealerDetail({ portal = false }) {
             { key: 'category', label: 'Type', render: (r) => (r.category === 'vehicle' ? 'Vehicles' : 'Spares') },
             { key: 'date', label: 'Date', render: (r) => fmtDate(r.date) },
             { key: 'total', label: 'Total', num: true, render: (r) => money(r.total) },
-            { key: 'balance', label: 'Balance', num: true, render: (r) => (r.balance > 0 ? <b>{money(r.balance)}</b> : '—') },
+            { key: 'balance', label: 'Balance', num: true, render: (r) => (r.balance > 0 ? <b>{money(r.balance)}</b> : '-') },
             { key: 'status', label: 'Status', render: (r) => <Badge status={r.status} /> },
           ]} />
         </div>

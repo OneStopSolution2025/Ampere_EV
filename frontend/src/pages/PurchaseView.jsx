@@ -64,7 +64,7 @@ export default function PurchaseView() {
             { key: 'chassis_no', label: 'Chassis', primary: true, render: (r) => <b className="mono">{r.chassis_no}</b> },
             { key: 'model', label: 'Model' },
             { key: 'color', label: 'Colour' },
-            { key: 'battery_no', label: 'Battery', hideSm: true, render: (r) => <span className="mono">{r.battery_no || '—'}</span> },
+            { key: 'battery_no', label: 'Battery', hideSm: true, render: (r) => <span className="mono">{r.battery_no || '-'}</span> },
             { key: 'status', label: 'Status', render: (r) => <Badge status={r.status} /> },
           ]} />
         </div>

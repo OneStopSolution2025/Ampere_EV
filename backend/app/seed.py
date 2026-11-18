@@ -12,7 +12,7 @@ DEMO_USERS = [
     ("Ravi Technician", "tech@ampereev.local", "technician"),
 ]
 
-# name, sku, hsn, ex-showroom price (excl. GST), cost, gst, reorder level, colours  — demo values, edit in Inventory
+# name, sku, hsn, ex-showroom price (excl. GST), cost, gst, reorder level, colours. Demo values, edit in Inventory
 DEMO_MODELS = [
     ("Magnus EX", "AMP-MAGEX", "87116010", 88000, 80000, 5, 2, ["Graphite Black", "Metallic Red", "Galactic Grey"]),
     ("Primus", "AMP-PRIMUS", "87116010", 105000, 96000, 5, 2, ["Havelock Blue", "Royal Orange", "White"]),
@@ -22,7 +22,7 @@ DEMO_MODELS = [
 
 DEMO_ITEMS = [
     # kind, name, sku, brand, hsn/sac, unit, price, cost, gst, stock, reorder
-    ("service", "Periodic Service – Labour", "SRV-PS", None, "998714", "Job", 450, 0, 18, 0, 0),
+    ("service", "Periodic Service Labour", "SRV-PS", None, "998714", "Job", 450, 0, 18, 0, 0),
     ("service", "Battery Health Check & Diagnostics", "SRV-BHC", None, "998714", "Job", 300, 0, 18, 0, 0),
     ("service", "Motor & Controller Inspection", "SRV-MCI", None, "998714", "Job", 400, 0, 18, 0, 0),
     ("service", "Brake Adjustment", "SRV-BRK", None, "998714", "Job", 150, 0, 18, 0, 0),

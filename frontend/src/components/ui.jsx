@@ -131,7 +131,7 @@ export function DataTable({ columns, rows, onRowClick, empty, loading }) {
               {columns.map((c) => (
                 <td key={c.key} data-label={c.label}
                   className={`${c.num ? 'num' : ''} ${c.primary ? 'primary' : ''} ${c.hideSm ? 'hide-sm' : ''}`}>
-                  {c.render ? c.render(r) : r[c.key] ?? '—'}
+                  {c.render ? c.render(r) : r[c.key] ?? '-'}
                 </td>
               ))}
             </tr>
@@ -146,11 +146,25 @@ export function Pager({ total, offset, limit, onChange }) {
   if (total <= limit) return null;
   return (
     <div className="pager">
-      <span className="small muted">{offset + 1}–{Math.min(offset + limit, total)} of {total}</span>
+      <span className="small muted">{offset + 1}-{Math.min(offset + limit, total)} of {total}</span>
       <div className="row">
         <button className="btn sm" disabled={offset === 0} onClick={() => onChange(Math.max(0, offset - limit))}>Previous</button>
         <button className="btn sm" disabled={offset + limit >= total} onClick={() => onChange(offset + limit)}>Next</button>
       </div>
+    </div>
+  );
+}
+
+/** Password input with a show/hide toggle. Accepts the same props as <input>. */
+export function PasswordInput({ className = 'input', ...props }) {
+  const [show, setShow] = useState(false);
+  return (
+    <div className="pwd">
+      <input {...props} className={className} type={show ? 'text' : 'password'} />
+      <button type="button" className="pwd-toggle" onClick={() => setShow((s) => !s)}
+        aria-label={show ? 'Hide password' : 'Show password'} aria-pressed={show} title={show ? 'Hide password' : 'Show password'}>
+        <Icon name={show ? 'eyeOff' : 'eye'} size={18} />
+      </button>
     </div>
   );
 }

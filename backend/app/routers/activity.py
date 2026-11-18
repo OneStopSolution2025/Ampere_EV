@@ -15,7 +15,7 @@ router = APIRouter(prefix="/activity", tags=["activity"])
 def activity(q: str = "", entity: str = "", action: str = "", user_id: int | None = None,
              date_from: date | None = None, date_to: date | None = None, limit: int = 50, offset: int = 0,
              db: Session = Depends(get_db), _=Depends(require_roles("admin"))):
-    """Complete audit trail — administrator only."""
+    """Complete audit trail, administrator only."""
     stmt = select(AuditLog)
     if entity:
         stmt = stmt.where(AuditLog.entity == entity)

@@ -71,7 +71,7 @@ def gst(date_from: date | None = None, date_to: date | None = None, db: Session 
         "from": start.isoformat(), "to": end.isoformat(),
         "by_rate": [{"rate": r, "taxable": r2(tx), "cgst": r2((ia or 0) / 2), "sgst": r2((ia or 0) - r2((ia or 0) / 2)),
                      "igst": r2(ie)} for r, tx, ia, ie in by_rate],
-        "by_hsn": [{"hsn_sac": h or "—", "rate": r, "qty": r2(q), "taxable": r2(tx), "tax": r2(t)}
+        "by_hsn": [{"hsn_sac": h or "-", "rate": r, "qty": r2(q), "taxable": r2(tx), "tax": r2(t)}
                    for h, r, q, tx, t in by_hsn],
         "b2b_total": r2(b2b), "b2c_total": r2(total - b2b),
     }

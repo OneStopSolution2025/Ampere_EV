@@ -175,7 +175,7 @@ export default function JobCardDetail() {
           <Field label="Odometer (km)"><input className="input" type="number" disabled={!staff || locked} value={form.odometer} onChange={set('odometer')} /></Field>
           <Field label="Battery charge at check-in">
             <select className="input" disabled={!staff || locked} value={form.fuel_level} onChange={set('fuel_level')}>
-              <option value="">—</option>{['0-20%', '20-50%', '50-80%', '80-100%'].map((f) => <option key={f}>{f}</option>)}
+              <option value="">-</option>{['0-20%', '20-50%', '50-80%', '80-100%'].map((f) => <option key={f}>{f}</option>)}
             </select>
           </Field>
           <Field label="Promised delivery"><input className="input" type="date" disabled={!staff || locked} value={form.estimated_delivery} onChange={set('estimated_delivery')} /></Field>

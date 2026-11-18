@@ -311,7 +311,7 @@ class Invoice(Base):
 
     @property
     def party_name(self) -> str:
-        return self.subdealer.name if self.subdealer else (self.customer.name if self.customer else "—")
+        return self.subdealer.name if self.subdealer else (self.customer.name if self.customer else "-")
 
     @property
     def party_phone(self) -> Optional[str]:

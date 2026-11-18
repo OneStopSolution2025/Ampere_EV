@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { api } from '../api';
 import { useAuth } from '../auth';
-import { Field, useToast } from '../components/ui';
+import { Field, useToast, PasswordInput } from '../components/ui';
 import { INDIAN_STATES } from '../utils';
 
 const STATE_CODES = {
@@ -26,8 +26,8 @@ export function PasswordCard({ plain = false }) {
     <form className={plain ? 'stack' : 'card card-pad stack'} onSubmit={save}>
       {!plain && <h2>Change your password</h2>}
       <div className="form-grid">
-        <Field label="Current password"><input className="input" type="password" required value={f.current_password} onChange={(e) => setF({ ...f, current_password: e.target.value })} /></Field>
-        <Field label="New password"><input className="input" type="password" minLength={6} required value={f.new_password} onChange={(e) => setF({ ...f, new_password: e.target.value })} /></Field>
+        <Field label="Current password"><PasswordInput required value={f.current_password} onChange={(e) => setF({ ...f, current_password: e.target.value })} /></Field>
+        <Field label="New password"><PasswordInput minLength={6} required value={f.new_password} onChange={(e) => setF({ ...f, new_password: e.target.value })} /></Field>
       </div>
       <div><button className="btn">Update password</button></div>
     </form>

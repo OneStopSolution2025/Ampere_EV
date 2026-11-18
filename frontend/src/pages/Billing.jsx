@@ -80,7 +80,7 @@ export default function Billing({ category }) {
             { key: 'number', label: 'Number' },
             { key: 'date', label: 'Date', render: (r) => fmtDate(r.date) },
             { key: 'total', label: 'Total', num: true, render: (r) => money(r.total) },
-            ...(docType === 'invoice' ? [{ key: 'balance', label: 'Balance', num: true, render: (r) => (r.balance > 0 ? <b>{money(r.balance)}</b> : '—') }] : []),
+            ...(docType === 'invoice' ? [{ key: 'balance', label: 'Balance', num: true, render: (r) => (r.balance > 0 ? <b>{money(r.balance)}</b> : '-') }] : []),
             { key: 'status', label: 'Status', render: (r) => <Badge status={r.status} /> },
           ]} />
         <Pager total={data.total} offset={offset} limit={LIMIT} onChange={setOffset} />

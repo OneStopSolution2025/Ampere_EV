@@ -36,7 +36,7 @@ export default function Customers() {
           columns={[
             { key: 'name', label: 'Customer', primary: true, render: (r) => <b>{r.name}</b> },
             { key: 'phone', label: 'Phone' },
-            { key: 'vehicles', label: 'Vehicles', render: (r) => r.vehicles.map((v) => v.reg_no).join(', ') || '—' },
+            { key: 'vehicles', label: 'Vehicles', render: (r) => r.vehicles.map((v) => v.reg_no).join(', ') || '-' },
             { key: 'state', label: 'State', hideSm: true },
             { key: 'gstin', label: 'GSTIN', hideSm: true },
           ]} />

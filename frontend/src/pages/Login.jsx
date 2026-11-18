@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '../auth';
-import { Field } from '../components/ui';
+import { Field, PasswordInput } from '../components/ui';
 
 export default function Login() {
   const { login } = useAuth();
@@ -22,7 +22,7 @@ export default function Login() {
           <img src="/pwa-192.png" alt="" /><div><b>Ampere EV</b><span>Sales & service</span></div>
         </div>
         <div>
-          <h2>Every service, bill and part — in one place.</h2>
+          <h2>Every service, bill and part in one place.</h2>
           <p>GST-ready invoicing, job tracking and inventory for Ampere EV sales and service.</p>
           <ul>
             <li>Job card to invoice in one tap</li>
@@ -43,7 +43,7 @@ export default function Login() {
             <input className="input" type="email" autoComplete="username" required value={email} onChange={(e) => setEmail(e.target.value)} />
           </Field>
           <Field label="Password">
-            <input className="input" type="password" autoComplete="current-password" required value={password} onChange={(e) => setPassword(e.target.value)} />
+            <PasswordInput autoComplete="current-password" required value={password} onChange={(e) => setPassword(e.target.value)} />
           </Field>
           {error && <div className="badge red" style={{ borderRadius: 8, padding: '8px 12px' }}>{error}</div>}
           <button className="btn primary" disabled={busy}>{busy ? 'Signing in…' : 'Sign in'}</button>

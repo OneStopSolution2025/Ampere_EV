@@ -1,4 +1,4 @@
-# Ampere EV — Sales & Service Billing (PWA)
+# Ampere EV - Sales & Service Billing (PWA)
 
 GST-ready billing, job cards, inventory and reports for Ampere EV sales and service.
 Runs on desktop, tablet and phone, and installs like a native app.
@@ -24,29 +24,29 @@ Runs on desktop, tablet and phone, and installs like a native app.
 | **PWA** | Installable on desktop and mobile, responsive down to 360 px, offline app shell. |
 
 ### Dashboards by role
-- **Administrator / Manager** — one page covering today and month sales by business line, 14-day trend, receivables (customer vs sub-dealer), supplier payables, vehicle stock by model, spares, workshop, sub-dealer exposure, recent invoices and purchases. Administrators also see the latest activity and team.
-- **Billing Executive** — today's sales by line, collections by mode, jobs ready to bill, pending payments, vehicles available.
-- **Technician** — own job queue only.
-- **Sub-dealer** — vehicles in stock, retailed this month, amount due, credit available, bills and ledger.
+- **Administrator / Manager** - one page covering today and month sales by business line, 14-day trend, receivables (customer vs sub-dealer), supplier payables, vehicle stock by model, spares, workshop, sub-dealer exposure, recent invoices and purchases. Administrators also see the latest activity and team.
+- **Billing Executive** - today's sales by line, collections by mode, jobs ready to bill, pending payments, vehicles available.
+- **Technician** - own job queue only.
+- **Sub-dealer** - vehicles in stock, retailed this month, amount due, credit available, bills and ledger.
 
 ### Permission matrix
 
 | Capability | Admin | Manager | Billing Exec. | Technician | Sub-dealer |
 |---|:-:|:-:|:-:|:-:|:-:|
-| Vehicle / spare / service billing | ✓ | ✓ | ✓ | — | View own bills |
-| Edit invoice after payment | ✓ | — | — | — | — |
-| Cancel invoices | ✓ | ✓ | — | — | — |
-| Delete customer / supplier payments | ✓ | — | — | — | — |
-| Exceed sub-dealer credit limit | ✓ | — | — | — | — |
-| Change credit limits | ✓ | — | — | — | — |
-| Purchases & suppliers | ✓ | ✓ | — | — | — |
-| Vehicle models, spares catalogue, stock adjustments | ✓ | ✓ | View | — | — |
-| Delete manually-added vehicles | ✓ | — | — | — | — |
-| Sub-dealer master | ✓ | ✓ | View | — | — |
-| Mark sub-dealer vehicle retailed | ✓ | ✓ | — | — | Own stock |
-| Job cards | All | All | All | Assigned only | — |
-| Reports | ✓ | ✓ | — | — | — |
-| Activity log, users, settings | ✓ | — | — | — | — |
+| Vehicle / spare / service billing | ✓ | ✓ | ✓ | - | View own bills |
+| Edit invoice after payment | ✓ | - | - | - | - |
+| Cancel invoices | ✓ | ✓ | - | - | - |
+| Delete customer / supplier payments | ✓ | - | - | - | - |
+| Exceed sub-dealer credit limit | ✓ | - | - | - | - |
+| Change credit limits | ✓ | - | - | - | - |
+| Purchases & suppliers | ✓ | ✓ | - | - | - |
+| Vehicle models, spares catalogue, stock adjustments | ✓ | ✓ | View | - | - |
+| Delete manually-added vehicles | ✓ | - | - | - | - |
+| Sub-dealer master | ✓ | ✓ | View | - | - |
+| Mark sub-dealer vehicle retailed | ✓ | ✓ | - | - | Own stock |
+| Job cards | All | All | All | Assigned only | - |
+| Reports | ✓ | ✓ | - | - | - |
+| Activity log, users, settings | ✓ | - | - | - | - |
 
 ## Run locally
 
@@ -85,7 +85,7 @@ npm run dev                     # http://localhost:5173 (proxies /api to :8000)
 
 The repo supports two layouts. Pick one.
 
-### Option A — one service (simplest, recommended)
+### Option A - one service (simplest, recommended)
 The root `Dockerfile` builds the PWA and serves it from the API on a single domain. No CORS setup needed.
 
 1. New service from the GitHub repo. Leave **Root Directory empty**.
@@ -97,13 +97,13 @@ The root `Dockerfile` builds the PWA and serves it from the API on a single doma
    - `SEED_DEMO` = `0` (or `1` for a demo)
 4. Settings → Networking → Generate domain. Optional health check path: `/api/health`.
 
-### Option B — separate API and frontend services
-**API service** (Root Directory `/backend`) — builds `backend/Dockerfile`.
+### Option B - separate API and frontend services
+**API service** (Root Directory `/backend`) - builds `backend/Dockerfile`.
 - `DATABASE_URL` = `${{Postgres.DATABASE_URL}}`
 - `SECRET_KEY`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `SEED_DEMO`
 - `CORS_ORIGINS` = the frontend URL, e.g. `https://ampereev-production.up.railway.app`
 
-**Frontend service** (Root Directory `/frontend`) — builds `frontend/Dockerfile` (nginx).
+**Frontend service** (Root Directory `/frontend`) - builds `frontend/Dockerfile` (nginx).
 - `VITE_API_URL` = the API URL **with `/api`**, e.g. `https://your-api.up.railway.app/api`
 - Redeploy the frontend whenever `VITE_API_URL` changes, since it is baked in at build time.
 
@@ -114,7 +114,7 @@ Tables are created on first start. For schema changes in later versions, add Ale
 | Variable | Default | Purpose |
 |---|---|---|
 | `DATABASE_URL` | `sqlite:///./autobill.db` | Postgres or SQLite URL |
-| `SECRET_KEY` | — | JWT signing key (**set in production**) |
+| `SECRET_KEY` | - | JWT signing key (**set in production**) |
 | `TOKEN_HOURS` | `12` | Session length |
 | `ADMIN_EMAIL` / `ADMIN_PASSWORD` | `admin@ampereev.local` / `Admin@123` | Created on first run |
 | `SEED_DEMO` | `0` | Seed demo users, EV models with chassis stock, spares, a supplier and a sub-dealer |

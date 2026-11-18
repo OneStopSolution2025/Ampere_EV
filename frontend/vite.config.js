@@ -9,7 +9,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'apple-touch-icon.png'],
       manifest: {
-        name: 'Ampere EV – Sales & Service Billing',
+        name: 'Ampere EV Sales & Service Billing',
         short_name: 'Ampere EV',
         description: 'Billing, job cards and inventory for Ampere EV sales and service.',
         theme_color: '#0f172a',

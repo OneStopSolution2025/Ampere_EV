@@ -28,7 +28,7 @@ export function SupplierForm({ supplier, onClose, onSaved }) {
         <Field label="Email"><input className="input" type="email" value={f.email || ''} onChange={set('email')} /></Field>
         <Field label="GSTIN"><input className="input" maxLength={15} value={f.gstin || ''} onChange={(e) => setF({ ...f, gstin: e.target.value.toUpperCase() })} /></Field>
         <Field label="State">
-          <select className="input" value={f.state || ''} onChange={set('state')}><option value="">—</option>{INDIAN_STATES.map((s) => <option key={s}>{s}</option>)}</select>
+          <select className="input" value={f.state || ''} onChange={set('state')}><option value="">-</option>{INDIAN_STATES.map((s) => <option key={s}>{s}</option>)}</select>
         </Field>
         <Field label="Address" full><textarea className="input" value={f.address || ''} onChange={set('address')} /></Field>
       </form>
@@ -49,7 +49,7 @@ function Suppliers() {
         { key: 'phone', label: 'Phone' },
         { key: 'gstin', label: 'GSTIN', hideSm: true },
         { key: 'state', label: 'State', hideSm: true },
-        { key: 'payable', label: 'Payable', num: true, render: (r) => (r.payable ? <b>{money(r.payable)}</b> : '—') },
+        { key: 'payable', label: 'Payable', num: true, render: (r) => (r.payable ? <b>{money(r.payable)}</b> : '-') },
       ]} />
       {edit && <SupplierForm supplier={edit.id ? edit : null} onClose={() => setEdit(null)} onSaved={() => { setEdit(null); load(); }} />}
     </div>
@@ -98,9 +98,9 @@ export default function Purchases() {
               { key: 'supplier_name', label: 'Supplier', primary: true, render: (r) => <><b>{r.supplier_name}</b>{r.supplier_invoice_no && <span className="muted small"> · Bill {r.supplier_invoice_no}</span>}</> },
               { key: 'number', label: 'Number' },
               { key: 'date', label: 'Date', render: (r) => fmtDate(r.date) },
-              { key: 'contents', label: 'Received', render: (r) => [r.vehicles && `${r.vehicles} vehicle${r.vehicles > 1 ? 's' : ''}`, r.parts && `${r.parts} spares`].filter(Boolean).join(' · ') || '—' },
+              { key: 'contents', label: 'Received', render: (r) => [r.vehicles && `${r.vehicles} vehicle${r.vehicles > 1 ? 's' : ''}`, r.parts && `${r.parts} spares`].filter(Boolean).join(' · ') || '-' },
               { key: 'total', label: 'Total', num: true, render: (r) => money(r.total) },
-              { key: 'balance', label: 'Balance', num: true, render: (r) => (r.balance > 0 ? <b>{money(r.balance)}</b> : '—') },
+              { key: 'balance', label: 'Balance', num: true, render: (r) => (r.balance > 0 ? <b>{money(r.balance)}</b> : '-') },
               { key: 'status', label: 'Status', render: (r) => <Badge status={r.status} /> },
             ]} />
           <Pager total={data.total} offset={offset} limit={LIMIT} onChange={setOffset} />
