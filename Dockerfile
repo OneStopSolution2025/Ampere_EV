@@ -1,8 +1,8 @@
 # ---- Build the PWA ----
-FROM node:20-alpine AS web
+FROM node:20-slim AS web
 WORKDIR /web
 COPY frontend/package*.json ./
-RUN npm install --no-audit --no-fund
+RUN npm ci --no-audit --no-fund
 COPY frontend/ ./
 RUN npm run build
 

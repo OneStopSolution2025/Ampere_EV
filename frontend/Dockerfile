@@ -1,8 +1,8 @@
 # PWA service (Railway Root Directory: /frontend)
-FROM node:20-alpine AS build
+FROM node:20-slim AS build
 WORKDIR /app
 COPY package*.json ./
-RUN npm install --no-audit --no-fund
+RUN npm ci --no-audit --no-fund
 COPY . .
 # Public URL of the API service including /api, e.g. https://api.example.com/api
 ARG VITE_API_URL
