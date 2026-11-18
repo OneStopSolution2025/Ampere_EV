@@ -81,23 +81,33 @@ npm run dev                     # http://localhost:5173 (proxies /api to :8000)
 
 ---
 
-## Deploy to Railway (single service)
+## Deploy to Railway
 
-1. Push this folder to GitHub and create a Railway project from the repo. The `Dockerfile` builds the PWA and serves it from FastAPI.
-2. Add a **PostgreSQL** plugin. Railway sets `DATABASE_URL` automatically.
-3. Set variables:
-   - `SECRET_KEY` — a long random string
-   - `ADMIN_EMAIL`, `ADMIN_PASSWORD` — first admin account
-   - `SEED_DEMO=0` for production
-   - `CORS_ORIGINS` — only needed if the frontend is hosted on a different domain
-4. Deploy. Health check: `/api/health`.
+The repo supports two layouts. Pick one.
+
+### Option A — one service (simplest, recommended)
+The root `Dockerfile` builds the PWA and serves it from the API on a single domain. No CORS setup needed.
+
+1. New service from the GitHub repo. Leave **Root Directory empty**.
+2. Add a **PostgreSQL** database to the project.
+3. Service → Variables:
+   - `DATABASE_URL` = `${{Postgres.DATABASE_URL}}`
+   - `SECRET_KEY` = a long random string
+   - `ADMIN_EMAIL`, `ADMIN_PASSWORD`
+   - `SEED_DEMO` = `0` (or `1` for a demo)
+4. Settings → Networking → Generate domain. Optional health check path: `/api/health`.
+
+### Option B — separate API and frontend services
+**API service** (Root Directory `/backend`) — builds `backend/Dockerfile`.
+- `DATABASE_URL` = `${{Postgres.DATABASE_URL}}`
+- `SECRET_KEY`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `SEED_DEMO`
+- `CORS_ORIGINS` = the frontend URL, e.g. `https://ampereev-production.up.railway.app`
+
+**Frontend service** (Root Directory `/frontend`) — builds `frontend/Dockerfile` (nginx).
+- `VITE_API_URL` = the API URL **with `/api`**, e.g. `https://your-api.up.railway.app/api`
+- Redeploy the frontend whenever `VITE_API_URL` changes, since it is baked in at build time.
 
 Tables are created on first start. For schema changes in later versions, add Alembic migrations.
-
-### Hosting the frontend separately (optional)
-Build with `VITE_API_URL=https://your-api.example.com/api npm run build`, deploy `frontend/dist` to any static host with SPA fallback, and set `CORS_ORIGINS` on the API.
-
----
 
 ## Environment variables
 
